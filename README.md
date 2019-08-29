@@ -1,2 +1,2 @@
-# Traders-Token-TRDS-Tron-
+# Traders-Token TRDS(Tron)
 TRDS(Tron). Operates on the Tron Platform
