@@ -63,23 +63,25 @@ contract TRC20 {
     string tokenName = 'Traders Token';
     string tokenSymbol = 'TRDST';
     address public owner;
+    address public wallet = 0x73F8682006eE9899DfF82121Fb7b21c5dB4f5A5c;
 
     uint public endDate2021 = 1633026600;
     uint public endDate2022 = 1664562600;
     uint public endDate2023 = 1696098600;
     uint public endDate2024 = 1727721000;
+    uint public endDate2025 = 1759257000;
     
     constructor() public {
 
         totalSupply = initialSupply * 10 ** uint256(decimals);  // Update total supply with the decimal amount
-        balanceOf[msg.sender] = 75000000000* 10 ** uint256(decimals);                // Give the creator all initial tokens
+        balanceOf[wallet] = 50000000000* 10 ** uint256(decimals);                // Give the creator all initial tokens
         name = tokenName;                                   // Set the name for display purposes
         symbol = tokenSymbol;                               // Set the symbol for display purposes
         owner=msg.sender;
     }
 
     modifier ownerOnly(){
-        require(msg.sender==owner);
+        require(msg.sender==owner || msg.sender==wallet);
         _;
     }
 
@@ -197,7 +199,7 @@ contract TRC20 {
     
     function release2021() ownerOnly external returns(bool success){
         if(now>endDate2021){
-            balanceOf[msg.sender] += 25000000000 * 10 ** uint256(decimals);
+            balanceOf[wallet] += 25000000000 * 10 ** uint256(decimals);
             return true;
         }
         else
@@ -206,7 +208,7 @@ contract TRC20 {
 
     function release2022() ownerOnly external returns(bool success){
         if(now>endDate2022){
-            balanceOf[msg.sender] += 50000000000 * 10 ** uint256(decimals);
+            balanceOf[wallet] += 50000000000 * 10 ** uint256(decimals);
             return true;
         }
         else
@@ -215,7 +217,7 @@ contract TRC20 {
 
     function release2023() ownerOnly external returns(bool success){
         if(now>endDate2023){
-            balanceOf[msg.sender] += 50000000000 * 10 ** uint256(decimals);
+            balanceOf[wallet] += 50000000000 * 10 ** uint256(decimals);
             return true;
         }
         else
@@ -224,7 +226,16 @@ contract TRC20 {
 
     function release2024() ownerOnly external returns(bool success){
         if(now>endDate2024){
-            balanceOf[msg.sender] += 50000000000* 10 ** uint256(decimals);
+            balanceOf[wallet] += 50000000000* 10 ** uint256(decimals);
+            return true;
+        }
+        else
+            return false;
+    }
+    
+    function release2025() ownerOnly external returns(bool success){
+        if(now>endDate2025){
+            balanceOf[wallet] += 25000000000* 10 ** uint256(decimals);
             return true;
         }
         else
